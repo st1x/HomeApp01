@@ -1,6 +1,7 @@
 package com.example.admin.homeapp01;
 
 import android.app.Activity;
+import android.media.Image;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -34,21 +35,22 @@ public class MainActivity extends Activity {
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 switch (view.getId()) {
                     case R.id.button1:
                         imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_brightness_5_black_48dp));
-                        toast = Toast.makeText(MainActivity.this, "Выбрана картинка номер 1", Toast.LENGTH_SHORT);
-                        toast.show();
+                        setToastMethod("Выбрана картинка номер 1");
                         break;
                     case R.id.button2:
                         imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_brightness_6_black_48dp));
-                        toast = Toast.makeText(MainActivity.this, "Выбрана картинка номер 2", Toast.LENGTH_SHORT);
-                        toast.show();
+                        setToastMethod("Выбрана картинка номер 2");
                         break;
                     }
 
             }
         };
+
+
 
         button1.setOnClickListener(onClickListener);
         button2.setOnClickListener(onClickListener);
@@ -74,5 +76,14 @@ public class MainActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setToastMethod(String toastText){
+        toast = Toast.makeText(MainActivity.this, toastText, Toast.LENGTH_SHORT);
+        LinearLayout toastImage1 = (LinearLayout) toast.getView();
+        ImageView imageView1 = new ImageView(MainActivity.this);
+        imageView1.setImageResource(R.drawable.logo);
+        toastImage1.addView(imageView1, 0);
+        toast.show();
     }
 }
